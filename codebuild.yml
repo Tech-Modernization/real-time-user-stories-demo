@@ -8,6 +8,10 @@ Parameters:
     Default: real-time-user-stories-codebuild
     Description: >-
       The name of the Codebuild project
+  RepositoryType:
+    Type: String
+    Description: >-
+      The repository type, GITHUB, BITBUCKET
   RepositoryLocation:
     Type: String
     Description: >-
@@ -29,7 +33,7 @@ Resources:
             Value: !Ref 'AWS::AccountId'
       ServiceRole: !Ref BuildProjectRole
       Source:
-        Type: GITHUB
+        Type: !Ref RepositoryType
         Location: !Ref RepositoryLocation
       Triggers:
         Webhook: true

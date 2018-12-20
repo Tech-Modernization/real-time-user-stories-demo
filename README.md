@@ -8,12 +8,22 @@ This repository contains the code used to demo building feature branches from Gi
 
 
 To create the Codebuild project:
+
+Github:
 ```
 $ aws cloudformation create-stack --stack-name real-time-user-stories-codebuild --template-body file://codebuild.yml --parameters \
+ParameterKey=RepositoryType,ParameterValue=GITHUB \
 ParameterKey=RepositoryLocation,ParameterValue=https://github.com/rslotte/real-time-user-stories-demo.git \
 --capabilities CAPABILITY_NAMED_IAM
 ```
 
+Bitbucket:
+```
+$ aws cloudformation create-stack --stack-name real-time-user-stories-codebuild --template-body file://codebuild.yml --parameters \
+ParameterKey=RepositoryType,ParameterValue=BITBUCKET \
+ParameterKey=RepositoryLocation,ParameterValue=https://bitbucket.org/rslotte-contino/real-time-user-stories-demo.git \
+--capabilities CAPABILITY_NAMED_IAM
+```
 
 Modify the trigger if you only want to build on a specific branch naming pattern:
 ```
